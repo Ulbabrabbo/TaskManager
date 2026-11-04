@@ -114,57 +114,62 @@ public class Main {
         int idToSearch = input.nextInt();
         input.nextLine();
 
-        myTaskService.searchTask(idToSearch);
+        if(myTaskService.searchTask(idToSearch)) {
 
-        System.out.println("Selezionare il campo da modificare tra: \n" +
-                "1: Titolo \n" +
-                "2: Descrizione \n" +
-                "3: Status");
+            System.out.println("Selezionare il campo da modificare tra: \n" +
+                    "1: Titolo \n" +
+                    "2: Descrizione \n" +
+                    "3: Status");
 
-        String choice = input.nextLine();
+            String choice = input.nextLine();
 
-        switch(choice){
-            case "1":
-                System.out.print("Inserire nuovo titolo: ");
-                String newTitle = input.nextLine();
-                myTaskService.modifyTaskTitle(idToSearch, newTitle);
-                break;
+            switch (choice) {
+                case "1":
+                    System.out.print("Inserire nuovo titolo: ");
+                    String newTitle = input.nextLine();
+                    myTaskService.modifyTaskTitle(idToSearch, newTitle);
+                    break;
 
-            case "2":
-                System.out.print("Inserire nuova descrizione: ");
-                String newDescription = input.nextLine();
-                myTaskService.modifyTaskDescription(idToSearch, newDescription);
-                break;
+                case "2":
+                    System.out.print("Inserire nuova descrizione: ");
+                    String newDescription = input.nextLine();
+                    myTaskService.modifyTaskDescription(idToSearch, newDescription);
+                    break;
 
-            case "3":
-                System.out.print("Selezionare il nuova stato tra: \n" +
-                        "1): TODO\n" +
-                        "2): IN_PROGRESS\n" +
-                        "3): DONE\n");
+                case "3":
+                    System.out.print("Selezionare il nuova stato tra: \n" +
+                            "1): TODO\n" +
+                            "2): IN_PROGRESS\n" +
+                            "3): DONE\n");
 
-                Status status;
-                String statusSelection = input.nextLine();
-                switch (statusSelection) {
-                    case "1":
-                        status = Status.TODO;
-                        break;
-                    case "2":
-                        status = Status.IN_PROGRESS;
-                        break;
-                    case "3":
-                        status = Status.DONE;
-                        break;
-                    default:
-                        System.out.println("Scelta non valida!\n");
-//                        status = Status.TODO;
-                        return;
-                }
+                    Status status;
+                    String statusSelection = input.nextLine();
+                    switch (statusSelection) {
+                        case "1":
+                            status = Status.TODO;
+                            break;
+                        case "2":
+                            status = Status.IN_PROGRESS;
+                            break;
+                        case "3":
+                            status = Status.DONE;
+                            break;
+                        default:
+                            System.out.println("Scelta non valida!\n");
+                            //                        status = Status.TODO;
+                            return;
+                    }
 
-                myTaskService.modifyTaskStatus(idToSearch, status);
-                break;
+                    myTaskService.modifyTaskStatus(idToSearch, status);
+                    break;
 
-            default: System.out.println("Scelta non valida\n");
+                default:
+                    System.out.println("Scelta non valida\n");
+
+
+            }
         }
+        else return;
     }
 
     private static void deleteTask() {

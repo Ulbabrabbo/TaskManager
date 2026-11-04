@@ -34,12 +34,12 @@ public class TaskService {
         });
     }
 
-    public void searchTask(int id) {
+    public boolean searchTask(int id) {
         try {
             Task taskToSearch = myTaskList.stream()
                     .filter(task -> task.getId() == id)
                     .findFirst()
-                    .orElseThrow(() -> new NoSuchElementException("Task con id: " + id + " non trovato"));
+                    .orElseThrow(() -> new NoSuchElementException("Task con id: " + id + " non trovato\n"));
 
             //System.out.println("ecco il task con id: " + id + "\n");
 
@@ -47,9 +47,11 @@ public class TaskService {
                     "titolo: " + taskToSearch.getTitle() + "\n" +
                     "descrizione: " + taskToSearch.getDescription() + "\n" +
                     "status: " + taskToSearch.getStatus() + "\n");
+            return true;
 
         } catch (NoSuchElementException e) {
             System.out.println(e.getMessage());
+            return false;
         }
     }
 
@@ -58,7 +60,7 @@ public class TaskService {
             Task taskToModify = myTaskList.stream()
                     .filter(task -> task.getId() == id)
                     .findFirst()
-                    .orElseThrow(() -> new NoSuchElementException("Task con id: " + id + " non trovato"));
+                    .orElseThrow(() -> new NoSuchElementException("Task con id: " + id + " non trovato\n"));
 
             taskToModify.setTitle(newTitle);
             System.out.println("Task con id: " + id + " modificato con titolo: " + newTitle + "\n");
