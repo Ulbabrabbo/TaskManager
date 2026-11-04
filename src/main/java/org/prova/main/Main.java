@@ -52,7 +52,7 @@ public class Main {
                     default -> System.out.println("Scelta non valida\n");
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Inserimento non valido. Inserire un intero\n");
+                System.out.println("Inserimento non valido.\n");
                 // consumo l'input per non farlo andare avanti all'infinito
                 input.nextLine();
             }
@@ -155,9 +155,9 @@ public class Main {
                         status = Status.DONE;
                         break;
                     default:
-                        System.out.println("Scelta non valida! Impostato su TODO di default.\n");
-                        status = Status.TODO;
-                        break;
+                        System.out.println("Scelta non valida!\n");
+//                        status = Status.TODO;
+                        return;
                 }
 
                 myTaskService.modifyTaskStatus(idToSearch, status);

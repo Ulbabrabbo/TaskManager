@@ -130,6 +130,7 @@ public class TaskService {
 //            }
 //        });
 
+        // controllo in più per vedere se la lista restituita è vuota
         List<Task> filteredTaskList = myTaskList.stream()
                 .filter(task -> task.getStatus() == status)
                 .toList();
